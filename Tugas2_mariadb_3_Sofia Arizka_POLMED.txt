@@ -1,0 +1,249 @@
+Nama		: Sofia Arizka
+Asal Kampus	: Politeknik Negeri Medan
+Kelompok	: 3
+Mentor		: Akhmad Arif
++-------------------------------------------------------------------------------------------------+
+
+1. Masuk ke ruang DB dbpegawai melalui CMD
+
+Microsoft Windows [Version 10.0.19044.2006]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\Acer>d:
+
+D:\>cd xampp\mysql\bin
+
+D:\xampp\mysql\bin>mysql -u root -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 8
+Server version: 10.4.24-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| dbpegawai          |
+| dbtoko             |
+| information_schema |
+| mysql              |
+| performance_schema |
+| phpmyadmin         |
+| test               |
++--------------------+
+7 rows in set (0.092 sec)
+
+2. Tampilkan tabel yang ada di dbpegawai
+
+MariaDB [(none)]> use dbpegawai;
+Database changed
+MariaDB [dbpegawai]> show tables;
++---------------------+
+| Tables_in_dbpegawai |
++---------------------+
+| divisi              |
+| pegawai             |
++---------------------+
+2 rows in set (0.001 sec)
+
+3. Tampilkan deskripsi tabel yang ada di dbpegawai
+
+MariaDB [dbpegawai]> desc divisi;
++-------+-------------+------+-----+---------+----------------+
+| Field | Type        | Null | Key | Default | Extra          |
++-------+-------------+------+-----+---------+----------------+
+| id    | int(11)     | NO   | PRI | NULL    | auto_increment |
+| nama  | varchar(30) | NO   | UNI | NULL    |                |
++-------+-------------+------+-----+---------+----------------+
+2 rows in set (0.193 sec)
+
+4. Input data divisi => SDM, Keuangan, Marketing, IT
+
+MariaDB [dbpegawai]> insert into divisi (id,nama) values
+    -> ('','SDM'),
+    -> ('','Keuangan'),
+    -> ('','Marketing'),
+    -> ('','IT');
+Query OK, 4 rows affected, 4 warnings (0.302 sec)
+Records: 4  Duplicates: 0  Warnings: 4
+
+MariaDB [dbpegawai]> desc pegawai;
++-----------+---------------+------+-----+---------+----------------+
+| Field     | Type          | Null | Key | Default | Extra          |
++-----------+---------------+------+-----+---------+----------------+
+| id        | int(11)       | NO   | PRI | NULL    | auto_increment |
+| nip       | char(5)       | NO   | UNI | NULL    |                |
+| nama      | varchar(30)   | NO   |     | NULL    |                |
+| gender    | enum('L','P') | NO   |     | NULL    |                |
+| tmp_lahir | varchar(30)   | NO   |     | NULL    |                |
+| tgl_lahir | date          | NO   |     | NULL    |                |
+| id_divisi | int(11)       | YES  |     | NULL    |                |
+| alamat    | text          | YES  |     | NULL    |                |
++-----------+---------------+------+-----+---------+----------------+
+8 rows in set (0.015 sec)
+
+5. Input 20 orang pegawai ( 1 divisi 5 orang, untuk gender dirandom)
+
+MariaDB [dbpegawai]> insert into pegawai (id,nip,nama,gender,tmp_lahir,tgl_lahir,id_divisi,alamat) values
+    -> ('','00001','Sofia Arizka','P','Medan','2002-05-09',4,'Jalan Tuasan'),
+    -> ('','00002','Rara Fitria','P','Medan','2002-11-21',1,'Jalan Datuk Kabu'),
+    -> ('','00003','M. Arif Wardana Kartyas','L','Medan','2002-07-22',2,'Jalan Bilal'),
+    -> ('','00004','M. Sadam Mustaqiem','L','Medan','2003-08-09',3,'Jalan Avros'),
+    -> ('','00005','Aldi Bimantara','L','Kisaran','2002-03-20',1,'Jalan Dr.Mansyur'),
+    -> ('','00006','Siti Dwi','P','Medan','2002-10-24',1,'Jalan Klambir'),
+    -> ('','00007','Shofwan Abdul','L','Medan','2002-05-11',1,'Jalan Gurilla'),
+    -> ('','00008','Kirana Arvianti','P','Medan','2002-08-16',1,'Jalan Letda Sujono'),
+    -> ('','00009','Nurul Fadhilla','P','Medan','2002-12-12',2,'Jalan Metrologi'),
+    -> ('','00010','Miftah Khairiyyah','P','Medan','2000-12-12',2,'Jalan Setia Budi'),
+    -> ('','00011','Khairunnisa Aprilza','P','Stabat','2000-12-20',2,'Jalan Pembangunan'),
+    -> ('','00012','Athiyah Zahra','P','Medan','2000-02-01',2,'Jalan Perintis Kemerdekaan'),
+    -> ('','00013','Julia Anggraini','P','Medan','2000-06-11',3,'Jalan Dahlia'),
+    -> ('','00014','Jeje Lubis','P','Medan','2000-03-11',3,'Jalan Pinang Baris'),
+    -> ('','00015','Rahma Nst','P','Medan','2000-03-22',3,'Jalan Sempurna'),
+    -> ('','00016','Nailah Adillah','P','Medan','2000-03-22',3,'Jalan Bhayangkara');
+    -> ('','00017','Putri Nora','P','Medan','2000-03-22',4,'Jalan Makmur'),
+    -> ('','00018','Ihsan Lubis','L','Medan','2002-08-23',4,'Jalan Pelajar'),
+    -> ('','00019','Zulfa Amira','L','Medan','2002-01-01',4,'Jalan Sm Raja'),
+    -> ('','00020','Chairunnisa Batubara','P','Medan','2002-01-20',4,'Jalan Pasar V');
+Query OK, 4 rows affected, 4 warnings (0.045 sec)
+Records: 20  Duplicates: 0  Warnings: 4
+
+6. Tampilkan seluruh data divisi
+
+MariaDB [dbpegawai]> select * from divisi;
++----+-----------+
+| id | nama      |
++----+-----------+
+|  4 | IT        |
+|  2 | Keuangan  |
+|  3 | Marketing |
+|  1 | SDM       |
++----+-----------+
+4 rows in set (0.002 sec)
+
+7. Tampilkan seluruh data pegawai
+ 
+MariaDB [dbpegawai]> select * from pegawai;
++----+-------+-------------------------+--------+-----------+------------+-----------+----------------------------+
+| id | nip   | nama                    | gender | tmp_lahir | tgl_lahir  | id_divisi | alamat                     |
++----+-------+-------------------------+--------+-----------+------------+-----------+----------------------------+
+| 18 | 00001 | Sofia Arizka            | P      | Medan     | 2002-05-09 |         4 | Jalan Tuasan               |
+| 19 | 00002 | Rara Fitria             | P      | Medan     | 2002-11-21 |         1 | Jalan Datuk Kabu           |
+| 20 | 00003 | M. Arif Wardana Kartyas | L      | Medan     | 2002-07-22 |         2 | Jalan Bilal                |
+| 21 | 00004 | M. Sadam Mustaqiem      | L      | Medan     | 2003-08-09 |         3 | Jalan Avros                |
+| 22 | 00005 | Aldi Bimantara          | L      | Kisaran   | 2002-03-20 |         1 | Jalan Dr.Mansyur           |
+| 23 | 00006 | Siti Dwi                | P      | Medan     | 2002-10-24 |         1 | Jalan Klambir              |
+| 24 | 00007 | Shofwan Abdul           | L      | Medan     | 2002-05-11 |         1 | Jalan Gurilla              |
+| 25 | 00008 | Kirana Arvianti         | P      | Medan     | 2002-08-16 |         1 | Jalan Letda Sujono         |
+| 26 | 00009 | Nurul Fadhilla          | P      | Medan     | 2002-12-12 |         2 | Jalan Metrologi            |
+| 27 | 00010 | Miftah Khairiyyah       | P      | Medan     | 2000-12-12 |         2 | Jalan Setia Budi           |
+| 28 | 00011 | Khairunnisa Aprilza     | P      | Stabat    | 2000-12-20 |         2 | Jalan Pembangunan          |
+| 29 | 00012 | Athiyah Zahra           | P      | Medan     | 2000-02-01 |         2 | Jalan Perintis Kemerdekaan |
+| 30 | 00013 | Julia Anggraini         | P      | Medan     | 2000-06-11 |         3 | Jalan Dahlia               |
+| 31 | 00014 | Jeje Lubis              | P      | Medan     | 2000-03-11 |         3 | Jalan Pinang Baris         |
+| 32 | 00015 | Rahma Nst               | P      | Medan     | 2000-03-22 |         3 | Jalan Sempurna             |
+| 33 | 00016 | Nailah Adillah          | P      | Medan     | 2000-03-22 |         3 | Jalan Bhayangkara          |
+| 34 | 00017 | Putri Nora              | P      | Medan     | 2000-03-22 |         4 | Jalan Makmur               |
+| 35 | 00018 | Ihsan Lubis             | L      | Medan     | 2002-08-23 |         4 | Jalan Pelajar              |
+| 36 | 00019 | Zulfa Amira             | L      | Medan     | 2002-01-01 |         4 | Jalan Sm Raja              |
+| 37 | 00020 | Chairunnisa Batubara    | P      | Medan     | 2002-01-20 |         4 | Jalan Pasar V              |
++----+-------+-------------------------+--------+-----------+------------+-----------+----------------------------+
+20 rows in set (0.000 sec)
+
+8. Ubah 5 data pegawai (dengan ketentuan ubah 3 kolom(bebas))
+
+MariaDB [dbpegawai]> update pegawai set
+    -> nama = 'Arizka Sofia', alamat = 'Jalan Krakatau', tmp_lahir = 'Siantar'
+    -> where id = '18';
+Query OK, 1 row affected (0.076 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [dbpegawai]> update pegawai set
+    -> nama = 'Zulfa Lubis', alamat = 'Jalan Williem Iskandar', tmp_lahir = 'Padang'
+    -> where id = '36';
+Query OK, 1 row affected (0.082 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [dbpegawai]> update pegawai set
+    -> nama = 'Chairunisa BB', alamat = 'Jalan Bandar Setia', tmp_lahir = 'Padang Sidempuan'
+    -> where id = '37';
+Query OK, 1 row affected (0.037 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [dbpegawai]> update pegawai set
+    -> nama = 'M. Ihsan', alamat = 'Jalan Pelajar Timur', tmp_lahir = 'Sipirok'
+    -> where id = '35';
+Query OK, 1 row affected (0.073 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [dbpegawai]> update pegawai set
+    -> nama = 'Athiyah Lubis', alamat = 'Jalan Amplas', tmp_lahir = 'Rantau Prapat'
+    -> where id = '29';
+Query OK, 1 row affected (0.065 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [dbpegawai]> select * from pegawai;
++----+-------+-------------------------+--------+------------------+------------+-----------+------------------------+
+| id | nip   | nama                    | gender | tmp_lahir        | tgl_lahir  | id_divisi | alamat                 |
++----+-------+-------------------------+--------+------------------+------------+-----------+------------------------+
+| 18 | 00001 | Arizka Sofia            | P      | Siantar          | 2002-05-09 |         4 | Jalan Krakatau         |
+| 19 | 00002 | Rara Fitria             | P      | Medan            | 2002-11-21 |         1 | Jalan Datuk Kabu       |
+| 20 | 00003 | M. Arif Wardana Kartyas | L      | Medan            | 2002-07-22 |         2 | Jalan Bilal            |
+| 21 | 00004 | M. Sadam Mustaqiem      | L      | Medan            | 2003-08-09 |         3 | Jalan Avros            |
+| 22 | 00005 | Aldi Bimantara          | L      | Kisaran          | 2002-03-20 |         1 | Jalan Dr.Mansyur       |
+| 23 | 00006 | Siti Dwi                | P      | Medan            | 2002-10-24 |         1 | Jalan Klambir          |
+| 24 | 00007 | Shofwan Abdul           | L      | Medan            | 2002-05-11 |         1 | Jalan Gurilla          |
+| 25 | 00008 | Kirana Arvianti         | P      | Medan            | 2002-08-16 |         1 | Jalan Letda Sujono     |
+| 26 | 00009 | Nurul Fadhilla          | P      | Medan            | 2002-12-12 |         2 | Jalan Metrologi        |
+| 27 | 00010 | Miftah Khairiyyah       | P      | Medan            | 2000-12-12 |         2 | Jalan Setia Budi       |
+| 28 | 00011 | Khairunnisa Aprilza     | P      | Stabat           | 2000-12-20 |         2 | Jalan Pembangunan      |
+| 29 | 00012 | Athiyah Lubis           | P      | Rantau Prapat    | 2000-02-01 |         2 | Jalan Amplas           |
+| 30 | 00013 | Julia Anggraini         | P      | Medan            | 2000-06-11 |         3 | Jalan Dahlia           |
+| 31 | 00014 | Jeje Lubis              | P      | Medan            | 2000-03-11 |         3 | Jalan Pinang Baris     |
+| 32 | 00015 | Rahma Nst               | P      | Medan            | 2000-03-22 |         3 | Jalan Sempurna         |
+| 33 | 00016 | Nailah Adillah          | P      | Medan            | 2000-03-22 |         3 | Jalan Bhayangkara      |
+| 34 | 00017 | Putri Nora              | P      | Medan            | 2000-03-22 |         4 | Jalan Makmur           |
+| 35 | 00018 | M. Ihsan                | L      | Sipirok          | 2002-08-23 |         4 | Jalan Pelajar Timur    |
+| 36 | 00019 | Zulfa Lubis             | L      | Padang           | 2002-01-01 |         4 | Jalan Williem Iskandar |
+| 37 | 00020 | Chairunisa BB           | P      | Padang Sidempuan | 2002-01-20 |         4 | Jalan Bandar Setia     |
++----+-------+-------------------------+--------+------------------+------------+-----------+------------------------+
+20 rows in set (0.001 sec)
+
+9. Hapus 2 pegawai pegawai terakhir
+
+MariaDB [dbpegawai]> delete from pegawai where id = '37';
+Query OK, 1 row affected (0.062 sec)
+
+MariaDB [dbpegawai]> delete from pegawai where id = '36';
+Query OK, 1 row affected (0.071 sec)
+
+10. Tampilkan kembali data pegawai
+
+MariaDB [dbpegawai]> select * from pegawai;
++----+-------+-------------------------+--------+---------------+------------+-----------+---------------------+
+| id | nip   | nama                    | gender | tmp_lahir     | tgl_lahir  | id_divisi | alamat              |
++----+-------+-------------------------+--------+---------------+------------+-----------+---------------------+
+| 18 | 00001 | Arizka Sofia            | P      | Siantar       | 2002-05-09 |         4 | Jalan Krakatau      |
+| 19 | 00002 | Rara Fitria             | P      | Medan         | 2002-11-21 |         1 | Jalan Datuk Kabu    |
+| 20 | 00003 | M. Arif Wardana Kartyas | L      | Medan         | 2002-07-22 |         2 | Jalan Bilal         |
+| 21 | 00004 | M. Sadam Mustaqiem      | L      | Medan         | 2003-08-09 |         3 | Jalan Avros         |
+| 22 | 00005 | Aldi Bimantara          | L      | Kisaran       | 2002-03-20 |         1 | Jalan Dr.Mansyur    |
+| 23 | 00006 | Siti Dwi                | P      | Medan         | 2002-10-24 |         1 | Jalan Klambir       |
+| 24 | 00007 | Shofwan Abdul           | L      | Medan         | 2002-05-11 |         1 | Jalan Gurilla       |
+| 25 | 00008 | Kirana Arvianti         | P      | Medan         | 2002-08-16 |         1 | Jalan Letda Sujono  |
+| 26 | 00009 | Nurul Fadhilla          | P      | Medan         | 2002-12-12 |         2 | Jalan Metrologi     |
+| 27 | 00010 | Miftah Khairiyyah       | P      | Medan         | 2000-12-12 |         2 | Jalan Setia Budi    |
+| 28 | 00011 | Khairunnisa Aprilza     | P      | Stabat        | 2000-12-20 |         2 | Jalan Pembangunan   |
+| 29 | 00012 | Athiyah Lubis           | P      | Rantau Prapat | 2000-02-01 |         2 | Jalan Amplas        |
+| 30 | 00013 | Julia Anggraini         | P      | Medan         | 2000-06-11 |         3 | Jalan Dahlia        |
+| 31 | 00014 | Jeje Lubis              | P      | Medan         | 2000-03-11 |         3 | Jalan Pinang Baris  |
+| 32 | 00015 | Rahma Nst               | P      | Medan         | 2000-03-22 |         3 | Jalan Sempurna      |
+| 33 | 00016 | Nailah Adillah          | P      | Medan         | 2000-03-22 |         3 | Jalan Bhayangkara   |
+| 34 | 00017 | Putri Nora              | P      | Medan         | 2000-03-22 |         4 | Jalan Makmur        |
+| 35 | 00018 | M. Ihsan                | L      | Sipirok       | 2002-08-23 |         4 | Jalan Pelajar Timur |
++----+-------+-------------------------+--------+---------------+------------+-----------+---------------------+
+18 rows in set (0.001 sec)
