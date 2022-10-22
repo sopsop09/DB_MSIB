@@ -1,0 +1,472 @@
+      +-------------------------------------------------------+
+      | Nama		: Sofia Arizka			      |
+      | Asal Kampus	: Politeknik Negeri Medan	      |
+      | Kel		: 3				      |
+      | Mentor		: Akhmad Arif			      |
+      +-------------------------------------------------------+
+
+- masuk ke ruang DB dbpegawai melalui CMD
+Microsoft Windows [Version 10.0.19044.2006]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\Acer>d:
+
+D:\>cd xampp\mysql\bin
+
+D:\xampp\mysql\bin>mysql -u root -p dbpegawai
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 23
+Server version: 10.4.24-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+- tampilkan tabel yang ada di dbpegawai
+
+MariaDB [dbpegawai]> show tables;
++---------------------+
+| Tables_in_dbpegawai |
++---------------------+
+| divisi              |
+| pegawai             |
++---------------------+
+2 rows in set (0.001 sec)
+
+- tampilkan deskripsi tabel yang ada di dbpegawai
+
+MariaDB [dbpegawai]> desc divisi;
++-------+-------------+------+-----+---------+----------------+
+| Field | Type        | Null | Key | Default | Extra          |
++-------+-------------+------+-----+---------+----------------+
+| id    | int(11)     | NO   | PRI | NULL    | auto_increment |
+| nama  | varchar(30) | NO   | UNI | NULL    |                |
++-------+-------------+------+-----+---------+----------------+
+2 rows in set (0.128 sec)
+
+MariaDB [dbpegawai]> desc pegawai;
++-----------+---------------+------+-----+---------+----------------+
+| Field     | Type          | Null | Key | Default | Extra          |
++-----------+---------------+------+-----+---------+----------------+
+| id        | int(11)       | NO   | PRI | NULL    | auto_increment |
+| nip       | char(5)       | NO   | UNI | NULL    |                |
+| nama      | varchar(30)   | NO   |     | NULL    |                |
+| gender    | enum('L','P') | NO   |     | NULL    |                |
+| tmp_lahir | varchar(30)   | NO   |     | NULL    |                |
+| tgl_lahir | date          | NO   |     | NULL    |                |
+| id_divisi | int(11)       | YES  |     | NULL    |                |
+| alamat    | text          | YES  |     | NULL    |                |
++-----------+---------------+------+-----+---------+----------------+
+8 rows in set (0.053 sec)
+
+- gunakan alter tabel untuk menambahkan kolom baru berat_badan
+
+MariaDB [dbpegawai]> alter table pegawai add berat_badan varchar(20);
+Query OK, 0 rows affected (0.208 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+- Lalu input berat badan semua pegawai secara acak
+MariaDB [dbpegawai]> update pegawai set berat_badan = '50 kg' where id = '18';
+Query OK, 1 row affected (0.140 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [dbpegawai]> update pegawai set berat_badan = '55 kg' where id = '19';
+Query OK, 1 row affected (0.070 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [dbpegawai]> update pegawai set berat_badan = '53 kg' where id = '20';
+Query OK, 1 row affected (0.072 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [dbpegawai]> update pegawai set berat_badan = '66 kg' where id = '21';
+Query OK, 1 row affected (0.070 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [dbpegawai]> update pegawai set berat_badan = '45 kg' where id = '22';
+Query OK, 1 row affected (0.108 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [dbpegawai]> update pegawai set berat_badan = '70 kg' where id = '23';
+Query OK, 1 row affected (0.088 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [dbpegawai]> update pegawai set berat_badan = '65 kg' where id = '24';
+Query OK, 1 row affected (0.073 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [dbpegawai]> update pegawai set berat_badan = '54 kg' where id = '25';
+Query OK, 1 row affected (0.081 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [dbpegawai]> update pegawai set berat_badan = '55 kg' where id = '26';
+Query OK, 1 row affected (0.104 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [dbpegawai]> update pegawai set berat_badan = '51 kg' where id = '27';
+Query OK, 1 row affected (0.084 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [dbpegawai]> update pegawai set berat_badan = '75 kg' where id = '28';
+Query OK, 1 row affected (0.080 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [dbpegawai]> update pegawai set berat_badan = '64 kg' where id = '29';
+Query OK, 1 row affected (0.062 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [dbpegawai]> update pegawai set berat_badan = '60 kg' where id = '30';
+Query OK, 1 row affected (0.058 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [dbpegawai]> update pegawai set berat_badan = '52 kg' where id = '31';
+Query OK, 1 row affected (0.067 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [dbpegawai]> update pegawai set berat_badan = '55 kg' where id = '32';
+Query OK, 1 row affected (0.099 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [dbpegawai]> update pegawai set berat_badan = '57 kg' where id = '33';
+Query OK, 1 row affected (0.063 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [dbpegawai]> update pegawai set berat_badan = '56 kg' where id = '34';
+Query OK, 1 row affected (0.063 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [dbpegawai]> update pegawai set berat_badan = '75 kg' where id = '35';
+Query OK, 1 row affected (0.058 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+- tampilkan seluruh data pegawai
+
+MariaDB [dbpegawai]> select * from pegawai;
++----+-------+-------------------------+--------+---------------+------------+-----------+---------------------+-------------+
+| id | nip   | nama                    | gender | tmp_lahir     | tgl_lahir  | id_divisi | alamat              | berat_badan |
++----+-------+-------------------------+--------+---------------+------------+-----------+---------------------+-------------+
+| 18 | 00001 | Arizka Sofia            | P      | Siantar       | 2002-05-09 |         4 | Jalan Krakatau      | 50 kg       |
+| 19 | 00002 | Rara Fitria             | P      | Medan         | 2002-11-21 |         1 | Jalan Datuk Kabu    | 55 kg       |
+| 20 | 00003 | M. Arif Wardana Kartyas | L      | Medan         | 2002-07-22 |         2 | Jalan Bilal         | 53 kg       |
+| 21 | 00004 | M. Sadam Mustaqiem      | L      | Medan         | 2003-08-09 |         3 | Jalan Avros         | 66 kg       |
+| 22 | 00005 | Aldi Bimantara          | L      | Kisaran       | 2002-03-20 |         1 | Jalan Dr.Mansyur    | 45 kg       |
+| 23 | 00006 | Siti Dwi                | P      | Medan         | 2002-10-24 |         1 | Jalan Klambir       | 70 kg       |
+| 24 | 00007 | Shofwan Abdul           | L      | Medan         | 2002-05-11 |         1 | Jalan Gurilla       | 65 kg       |
+| 25 | 00008 | Kirana Arvianti         | P      | Medan         | 2002-08-16 |         1 | Jalan Letda Sujono  | 54 kg       |
+| 26 | 00009 | Nurul Fadhilla          | P      | Medan         | 2002-12-12 |         2 | Jalan Metrologi     | 55 kg       |
+| 27 | 00010 | Miftah Khairiyyah       | P      | Medan         | 2000-12-12 |         2 | Jalan Setia Budi    | 51 kg       |
+| 28 | 00011 | Khairunnisa Aprilza     | P      | Stabat        | 2000-12-20 |         2 | Jalan Pembangunan   | 75 kg       |
+| 29 | 00012 | Athiyah Lubis           | P      | Rantau Prapat | 2000-02-01 |         2 | Jalan Amplas        | 64 kg       |
+| 30 | 00013 | Julia Anggraini         | P      | Medan         | 2000-06-11 |         3 | Jalan Dahlia        | 60 kg       |
+| 31 | 00014 | Jeje Lubis              | P      | Medan         | 2000-03-11 |         3 | Jalan Pinang Baris  | 52 kg       |
+| 32 | 00015 | Rahma Nst               | P      | Medan         | 2000-03-22 |         3 | Jalan Sempurna      | 55 kg       |
+| 33 | 00016 | Nailah Adillah          | P      | Medan         | 2000-03-22 |         3 | Jalan Bhayangkara   | 57 kg       |
+| 34 | 00017 | Putri Nora              | P      | Medan         | 2000-03-22 |         4 | Jalan Makmur        | 56 kg       |
+| 35 | 00018 | M. Ihsan                | L      | Sipirok       | 2002-08-23 |         4 | Jalan Pelajar Timur | 75 kg       |
++----+-------+-------------------------+--------+---------------+------------+-----------+---------------------+-------------+
+18 rows in set (0.001 sec)
+
+- tampilkan kolom2 tertentu di tabel staff (nip,nama,gender,umur)
+
+MariaDB [dbpegawai]> select nip, nama, gender, timestampdiff(year,tgl_lahir,curdate()) as umur from pegawai;
++-------+-------------------------+--------+------+
+| nip   | nama                    | gender | umur |
++-------+-------------------------+--------+------+
+| 00001 | Arizka Sofia            | P      |   20 |
+| 00002 | Rara Fitria             | P      |   19 |
+| 00003 | M. Arif Wardana Kartyas | L      |   20 |
+| 00004 | M. Sadam Mustaqiem      | L      |   19 |
+| 00005 | Aldi Bimantara          | L      |   20 |
+| 00006 | Siti Dwi                | P      |   19 |
+| 00007 | Shofwan Abdul           | L      |   20 |
+| 00008 | Kirana Arvianti         | P      |   20 |
+| 00009 | Nurul Fadhilla          | P      |   19 |
+| 00010 | Miftah Khairiyyah       | P      |   21 |
+| 00011 | Khairunnisa Aprilza     | P      |   21 |
+| 00012 | Athiyah Lubis           | P      |   22 |
+| 00013 | Julia Anggraini         | P      |   22 |
+| 00014 | Jeje Lubis              | P      |   22 |
+| 00015 | Rahma Nst               | P      |   22 |
+| 00016 | Nailah Adillah          | P      |   22 |
+| 00017 | Putri Nora              | P      |   22 |
+| 00018 | M. Ihsan                | L      |   20 |
++-------+-------------------------+--------+------+
+18 rows in set (0.063 sec)
+
+- tampilkan baris2 tertentu di tabel staff (menampilkan yang gendernya laki2 saja)
+
+MariaDB [dbpegawai]> select id,nip,nama,gender,tmp_lahir,tgl_lahir,id_divisi,alamat,berat_badan from pegawai where gender = 'L';
++----+-------+-------------------------+--------+-----------+------------+-----------+---------------------+-------------+
+| id | nip   | nama                    | gender | tmp_lahir | tgl_lahir  | id_divisi | alamat              | berat_badan |
++----+-------+-------------------------+--------+-----------+------------+-----------+---------------------+-------------+
+| 20 | 00003 | M. Arif Wardana Kartyas | L      | Medan     | 2002-07-22 |         2 | Jalan Bilal         | 53 kg       |
+| 21 | 00004 | M. Sadam Mustaqiem      | L      | Medan     | 2003-08-09 |         3 | Jalan Avros         | 66 kg       |
+| 22 | 00005 | Aldi Bimantara          | L      | Kisaran   | 2002-03-20 |         1 | Jalan Dr.Mansyur    | 45 kg       |
+| 24 | 00007 | Shofwan Abdul           | L      | Medan     | 2002-05-11 |         1 | Jalan Gurilla       | 65 kg       |
+| 35 | 00018 | M. Ihsan                | L      | Sipirok   | 2002-08-23 |         4 | Jalan Pelajar Timur | 75 kg       |
++----+-------+-------------------------+--------+-----------+------------+-----------+---------------------+-------------+
+5 rows in set (0.001 sec)
+
+- tampilkan kolom2 dan baris2 tertentu di tabel staff
+
+MariaDB [dbpegawai]> select nip,nama from pegawai where id_divisi = 4;
++-------+--------------+
+| nip   | nama         |
++-------+--------------+
+| 00001 | Arizka Sofia |
+| 00017 | Putri Nora   |
+| 00018 | M. Ihsan     |
++-------+--------------+
+3 rows in set (0.041 sec)
+
+- tampilkan data pegawai yang umurnya di atas 30 tahun dan lahirnya di kota jakarta (tidak ada data pegawai umur di atas 30 thn dan lahirnya di kota jakarta)
+
+MariaDB [dbpegawai]> select id,nip,nama,gender,tmp_lahir,alamat,id_divisi,berat_badan,tgl_lahir, (YEAR(CURDATE())-YEAR(tgl_lahir)) AS Umur FROM pegawai WHERE (YEAR(CURDATE())-YEAR(tgl_lahir)) >= 30 and tmp_lahir = 'Jakarta';
+Empty set (0.001 sec)
+
+- tampilkan data pegawai yang umurnya di atas 20 tahun dan lahirnya di kota medan (sebagai pengganti data pegawai umur di atas 30 thn dan lahirnya di kota jakarta)
+
+MariaDB [dbpegawai]> select id,nip,nama,gender,tmp_lahir,alamat,id_divisi,berat_badan,tgl_lahir, (YEAR(CURDATE())-YEAR(tgl_lahir)) AS Umur FROM pegawai WHERE (YEAR(CURDATE())-YEAR(tgl_lahir)) >= 20 and tmp_lahir = 'Medan';
++----+-------+-------------------------+--------+-----------+--------------------+-----------+-------------+------------+------+
+| id | nip   | nama                    | gender | tmp_lahir | alamat             | id_divisi | berat_badan | tgl_lahir  | Umur |
++----+-------+-------------------------+--------+-----------+--------------------+-----------+-------------+------------+------+
+| 19 | 00002 | Rara Fitria             | P      | Medan     | Jalan Datuk Kabu   |         1 | 55 kg       | 2002-11-21 |   20 |
+| 20 | 00003 | M. Arif Wardana Kartyas | L      | Medan     | Jalan Bilal        |         2 | 53 kg       | 2002-07-22 |   20 |
+| 23 | 00006 | Siti Dwi                | P      | Medan     | Jalan Klambir      |         1 | 70 kg       | 2002-10-24 |   20 |
+| 24 | 00007 | Shofwan Abdul           | L      | Medan     | Jalan Gurilla      |         1 | 65 kg       | 2002-05-11 |   20 |
+| 25 | 00008 | Kirana Arvianti         | P      | Medan     | Jalan Letda Sujono |         1 | 54 kg       | 2002-08-16 |   20 |
+| 26 | 00009 | Nurul Fadhilla          | P      | Medan     | Jalan Metrologi    |         2 | 55 kg       | 2002-12-12 |   20 |
+| 27 | 00010 | Miftah Khairiyyah       | P      | Medan     | Jalan Setia Budi   |         2 | 51 kg       | 2000-12-12 |   22 |
+| 30 | 00013 | Julia Anggraini         | P      | Medan     | Jalan Dahlia       |         3 | 60 kg       | 2000-06-11 |   22 |
+| 31 | 00014 | Jeje Lubis              | P      | Medan     | Jalan Pinang Baris |         3 | 52 kg       | 2000-03-11 |   22 |
+| 32 | 00015 | Rahma Nst               | P      | Medan     | Jalan Sempurna     |         3 | 55 kg       | 2000-03-22 |   22 |
+| 33 | 00016 | Nailah Adillah          | P      | Medan     | Jalan Bhayangkara  |         3 | 57 kg       | 2000-03-22 |   22 |
+| 34 | 00017 | Putri Nora              | P      | Medan     | Jalan Makmur       |         4 | 56 kg       | 2000-03-22 |   22 |
++----+-------+-------------------------+--------+-----------+--------------------+-----------+-------------+------------+------+
+12 rows in set (0.001 sec)
+
+- tampilkan data pegawai dengan klausa key (nip)
+
+MariaDB [dbpegawai]> select * from pegawai where nip = '00001';
++----+-------+--------------+--------+-----------+------------+-----------+----------------+-------------+
+| id | nip   | nama         | gender | tmp_lahir | tgl_lahir  | id_divisi | alamat         | berat_badan |
++----+-------+--------------+--------+-----------+------------+-----------+----------------+-------------+
+| 18 | 00001 | Arizka Sofia | P      | Siantar   | 2002-05-09 |         4 | Jalan Krakatau | 50 kg       |
++----+-------+--------------+--------+-----------+------------+-----------+----------------+-------------+
+1 row in set (0.001 sec)
+
+- tampilkan data pegawai dengan klausa non key (gender)
+
+MariaDB [dbpegawai]> select * from pegawai where gender = 'P';
++----+-------+---------------------+--------+---------------+------------+-----------+--------------------+-------------+
+| id | nip   | nama                | gender | tmp_lahir     | tgl_lahir  | id_divisi | alamat             | berat_badan |
++----+-------+---------------------+--------+---------------+------------+-----------+--------------------+-------------+
+| 18 | 00001 | Arizka Sofia        | P      | Siantar       | 2002-05-09 |         4 | Jalan Krakatau     | 50 kg       |
+| 19 | 00002 | Rara Fitria         | P      | Medan         | 2002-11-21 |         1 | Jalan Datuk Kabu   | 55 kg       |
+| 23 | 00006 | Siti Dwi            | P      | Medan         | 2002-10-24 |         1 | Jalan Klambir      | 70 kg       |
+| 25 | 00008 | Kirana Arvianti     | P      | Medan         | 2002-08-16 |         1 | Jalan Letda Sujono | 54 kg       |
+| 26 | 00009 | Nurul Fadhilla      | P      | Medan         | 2002-12-12 |         2 | Jalan Metrologi    | 55 kg       |
+| 27 | 00010 | Miftah Khairiyyah   | P      | Medan         | 2000-12-12 |         2 | Jalan Setia Budi   | 51 kg       |
+| 28 | 00011 | Khairunnisa Aprilza | P      | Stabat        | 2000-12-20 |         2 | Jalan Pembangunan  | 75 kg       |
+| 29 | 00012 | Athiyah Lubis       | P      | Rantau Prapat | 2000-02-01 |         2 | Jalan Amplas       | 64 kg       |
+| 30 | 00013 | Julia Anggraini     | P      | Medan         | 2000-06-11 |         3 | Jalan Dahlia       | 60 kg       |
+| 31 | 00014 | Jeje Lubis          | P      | Medan         | 2000-03-11 |         3 | Jalan Pinang Baris | 52 kg       |
+| 32 | 00015 | Rahma Nst           | P      | Medan         | 2000-03-22 |         3 | Jalan Sempurna     | 55 kg       |
+| 33 | 00016 | Nailah Adillah      | P      | Medan         | 2000-03-22 |         3 | Jalan Bhayangkara  | 57 kg       |
+| 34 | 00017 | Putri Nora          | P      | Medan         | 2000-03-22 |         4 | Jalan Makmur       | 56 kg       |
++----+-------+---------------------+--------+---------------+------------+-----------+--------------------+-------------+
+13 rows in set (0.001 sec)
+
+- tampilkan data pegawai dengan klausa in (menyebutkan beberapa nip)
+
+MariaDB [dbpegawai]> select * from pegawai where nip in ('00001','00007');
++----+-------+---------------+--------+-----------+------------+-----------+----------------+-------------+
+| id | nip   | nama          | gender | tmp_lahir | tgl_lahir  | id_divisi | alamat         | berat_badan |
++----+-------+---------------+--------+-----------+------------+-----------+----------------+-------------+
+| 18 | 00001 | Arizka Sofia  | P      | Siantar   | 2002-05-09 |         4 | Jalan Krakatau | 50 kg       |
+| 24 | 00007 | Shofwan Abdul | L      | Medan     | 2002-05-11 |         1 | Jalan Gurilla  | 65 kg       |
++----+-------+---------------+--------+-----------+------------+-----------+----------------+-------------+
+2 rows in set (0.032 sec)
+
+- tampilkan data pegawai dengan klausa not in (menyebutkan beberapa tempat lahir)
+
+MariaDB [dbpegawai]> select * from pegawai where tmp_lahir not in ('Medan','Siantar');
++----+-------+---------------------+--------+---------------+------------+-----------+---------------------+-------------+
+| id | nip   | nama                | gender | tmp_lahir     | tgl_lahir  | id_divisi | alamat              | berat_badan |
++----+-------+---------------------+--------+---------------+------------+-----------+---------------------+-------------+
+| 22 | 00005 | Aldi Bimantara      | L      | Kisaran       | 2002-03-20 |         1 | Jalan Dr.Mansyur    | 45 kg       |
+| 28 | 00011 | Khairunnisa Aprilza | P      | Stabat        | 2000-12-20 |         2 | Jalan Pembangunan   | 75 kg       |
+| 29 | 00012 | Athiyah Lubis       | P      | Rantau Prapat | 2000-02-01 |         2 | Jalan Amplas        | 64 kg       |
+| 35 | 00018 | M. Ihsan            | L      | Sipirok       | 2002-08-23 |         4 | Jalan Pelajar Timur | 75 kg       |
++----+-------+---------------------+--------+---------------+------------+-----------+---------------------+-------------+
+4 rows in set (0.001 sec)
+
+- tampilkan data pegawai berdasarkan nama secara ascending
+
+MariaDB [dbpegawai]> select * from pegawai order by nama asc;
++----+-------+-------------------------+--------+---------------+------------+-----------+---------------------+-------------+
+| id | nip   | nama                    | gender | tmp_lahir     | tgl_lahir  | id_divisi | alamat              | berat_badan |
++----+-------+-------------------------+--------+---------------+------------+-----------+---------------------+-------------+
+| 22 | 00005 | Aldi Bimantara          | L      | Kisaran       | 2002-03-20 |         1 | Jalan Dr.Mansyur    | 45 kg       |
+| 18 | 00001 | Arizka Sofia            | P      | Siantar       | 2002-05-09 |         4 | Jalan Krakatau      | 50 kg       |
+| 29 | 00012 | Athiyah Lubis           | P      | Rantau Prapat | 2000-02-01 |         2 | Jalan Amplas        | 64 kg       |
+| 31 | 00014 | Jeje Lubis              | P      | Medan         | 2000-03-11 |         3 | Jalan Pinang Baris  | 52 kg       |
+| 30 | 00013 | Julia Anggraini         | P      | Medan         | 2000-06-11 |         3 | Jalan Dahlia        | 60 kg       |
+| 28 | 00011 | Khairunnisa Aprilza     | P      | Stabat        | 2000-12-20 |         2 | Jalan Pembangunan   | 75 kg       |
+| 25 | 00008 | Kirana Arvianti         | P      | Medan         | 2002-08-16 |         1 | Jalan Letda Sujono  | 54 kg       |
+| 20 | 00003 | M. Arif Wardana Kartyas | L      | Medan         | 2002-07-22 |         2 | Jalan Bilal         | 53 kg       |
+| 35 | 00018 | M. Ihsan                | L      | Sipirok       | 2002-08-23 |         4 | Jalan Pelajar Timur | 75 kg       |
+| 21 | 00004 | M. Sadam Mustaqiem      | L      | Medan         | 2003-08-09 |         3 | Jalan Avros         | 66 kg       |
+| 27 | 00010 | Miftah Khairiyyah       | P      | Medan         | 2000-12-12 |         2 | Jalan Setia Budi    | 51 kg       |
+| 33 | 00016 | Nailah Adillah          | P      | Medan         | 2000-03-22 |         3 | Jalan Bhayangkara   | 57 kg       |
+| 26 | 00009 | Nurul Fadhilla          | P      | Medan         | 2002-12-12 |         2 | Jalan Metrologi     | 55 kg       |
+| 34 | 00017 | Putri Nora              | P      | Medan         | 2000-03-22 |         4 | Jalan Makmur        | 56 kg       |
+| 32 | 00015 | Rahma Nst               | P      | Medan         | 2000-03-22 |         3 | Jalan Sempurna      | 55 kg       |
+| 19 | 00002 | Rara Fitria             | P      | Medan         | 2002-11-21 |         1 | Jalan Datuk Kabu    | 55 kg       |
+| 24 | 00007 | Shofwan Abdul           | L      | Medan         | 2002-05-11 |         1 | Jalan Gurilla       | 65 kg       |
+| 23 | 00006 | Siti Dwi                | P      | Medan         | 2002-10-24 |         1 | Jalan Klambir       | 70 kg       |
++----+-------+-------------------------+--------+---------------+------------+-----------+---------------------+-------------+
+18 rows in set (0.001 sec)
+
+- tampilkan data pegawai dari yang berat badan paling gemuk ke paling kurus
+
+MariaDB [dbpegawai]> select * from pegawai order by berat_badan desc;
++----+-------+-------------------------+--------+---------------+------------+-----------+---------------------+-------------+
+| id | nip   | nama                    | gender | tmp_lahir     | tgl_lahir  | id_divisi | alamat              | berat_badan |
++----+-------+-------------------------+--------+---------------+------------+-----------+---------------------+-------------+
+| 28 | 00011 | Khairunnisa Aprilza     | P      | Stabat        | 2000-12-20 |         2 | Jalan Pembangunan   | 75 kg       |
+| 35 | 00018 | M. Ihsan                | L      | Sipirok       | 2002-08-23 |         4 | Jalan Pelajar Timur | 75 kg       |
+| 23 | 00006 | Siti Dwi                | P      | Medan         | 2002-10-24 |         1 | Jalan Klambir       | 70 kg       |
+| 21 | 00004 | M. Sadam Mustaqiem      | L      | Medan         | 2003-08-09 |         3 | Jalan Avros         | 66 kg       |
+| 24 | 00007 | Shofwan Abdul           | L      | Medan         | 2002-05-11 |         1 | Jalan Gurilla       | 65 kg       |
+| 29 | 00012 | Athiyah Lubis           | P      | Rantau Prapat | 2000-02-01 |         2 | Jalan Amplas        | 64 kg       |
+| 30 | 00013 | Julia Anggraini         | P      | Medan         | 2000-06-11 |         3 | Jalan Dahlia        | 60 kg       |
+| 33 | 00016 | Nailah Adillah          | P      | Medan         | 2000-03-22 |         3 | Jalan Bhayangkara   | 57 kg       |
+| 34 | 00017 | Putri Nora              | P      | Medan         | 2000-03-22 |         4 | Jalan Makmur        | 56 kg       |
+| 19 | 00002 | Rara Fitria             | P      | Medan         | 2002-11-21 |         1 | Jalan Datuk Kabu    | 55 kg       |
+| 26 | 00009 | Nurul Fadhilla          | P      | Medan         | 2002-12-12 |         2 | Jalan Metrologi     | 55 kg       |
+| 32 | 00015 | Rahma Nst               | P      | Medan         | 2000-03-22 |         3 | Jalan Sempurna      | 55 kg       |
+| 25 | 00008 | Kirana Arvianti         | P      | Medan         | 2002-08-16 |         1 | Jalan Letda Sujono  | 54 kg       |
+| 20 | 00003 | M. Arif Wardana Kartyas | L      | Medan         | 2002-07-22 |         2 | Jalan Bilal         | 53 kg       |
+| 31 | 00014 | Jeje Lubis              | P      | Medan         | 2000-03-11 |         3 | Jalan Pinang Baris  | 52 kg       |
+| 27 | 00010 | Miftah Khairiyyah       | P      | Medan         | 2000-12-12 |         2 | Jalan Setia Budi    | 51 kg       |
+| 18 | 00001 | Arizka Sofia            | P      | Siantar       | 2002-05-09 |         4 | Jalan Krakatau      | 50 kg       |
+| 22 | 00005 | Aldi Bimantara          | L      | Kisaran       | 2002-03-20 |         1 | Jalan Dr.Mansyur    | 45 kg       |
++----+-------+-------------------------+--------+---------------+------------+-----------+---------------------+-------------+
+18 rows in set (0.001 sec)
+
+- tampilkan data 5 pegawai teratas gunakan klausa limit
+
+MariaDB [dbpegawai]> select * from pegawai limit 5 offset 0;
++----+-------+-------------------------+--------+-----------+------------+-----------+------------------+-------------+
+| id | nip   | nama                    | gender | tmp_lahir | tgl_lahir  | id_divisi | alamat           | berat_badan |
++----+-------+-------------------------+--------+-----------+------------+-----------+------------------+-------------+
+| 18 | 00001 | Arizka Sofia            | P      | Siantar   | 2002-05-09 |         4 | Jalan Krakatau   | 50 kg       |
+| 19 | 00002 | Rara Fitria             | P      | Medan     | 2002-11-21 |         1 | Jalan Datuk Kabu | 55 kg       |
+| 20 | 00003 | M. Arif Wardana Kartyas | L      | Medan     | 2002-07-22 |         2 | Jalan Bilal      | 53 kg       |
+| 21 | 00004 | M. Sadam Mustaqiem      | L      | Medan     | 2003-08-09 |         3 | Jalan Avros      | 66 kg       |
+| 22 | 00005 | Aldi Bimantara          | L      | Kisaran   | 2002-03-20 |         1 | Jalan Dr.Mansyur | 45 kg       |
++----+-------+-------------------------+--------+-----------+------------+-----------+------------------+-------------+
+5 rows in set (0.000 sec)
+
+- tampilkan data 5 pegawai terbawah gunakan klausa limit offset
+
+MariaDB [dbpegawai]> select * from pegawai limit 5 offset 13;
++----+-------+----------------+--------+-----------+------------+-----------+---------------------+-------------+
+| id | nip   | nama           | gender | tmp_lahir | tgl_lahir  | id_divisi | alamat              | berat_badan |
++----+-------+----------------+--------+-----------+------------+-----------+---------------------+-------------+
+| 31 | 00014 | Jeje Lubis     | P      | Medan     | 2000-03-11 |         3 | Jalan Pinang Baris  | 52 kg       |
+| 32 | 00015 | Rahma Nst      | P      | Medan     | 2000-03-22 |         3 | Jalan Sempurna      | 55 kg       |
+| 33 | 00016 | Nailah Adillah | P      | Medan     | 2000-03-22 |         3 | Jalan Bhayangkara   | 57 kg       |
+| 34 | 00017 | Putri Nora     | P      | Medan     | 2000-03-22 |         4 | Jalan Makmur        | 56 kg       |
+| 35 | 00018 | M. Ihsan       | L      | Sipirok   | 2002-08-23 |         4 | Jalan Pelajar Timur | 75 kg       |
++----+-------+----------------+--------+-----------+------------+-----------+---------------------+-------------+
+5 rows in set (0.000 sec)
+
+- tampilkan jumlah pegawai gunakan fungsi aggregrat count
+
+MariaDB [dbpegawai]> select count(*) as jlh_pegawai from pegawai;
++------------+
+| jlh_pegawai|
++------------+
+|         18 |
++------------+
+1 row in set (0.001 sec)
+
+- tampilkan nip,nama pegawai, umur yg paling tua gunakan fungsi aggregrat max (kombinasi dengan sub query)
+
+MariaDB [dbpegawai]> select nip,nama,(YEAR(CURDATE())-YEAR(tgl_lahir)) as umur FROM pegawai WHERE (YEAR(CURDATE())-YEAR(tgl_lahir)) =
+    -> (select max((YEAR(CURDATE())-YEAR(tgl_lahir))) from pegawai);
++-------+---------------------+------+
+| nip   | nama                | umur |
++-------+---------------------+------+
+| 00010 | Miftah Khairiyyah   |   22 |
+| 00011 | Khairunnisa Aprilza |   22 |
+| 00012 | Athiyah Lubis       |   22 |
+| 00013 | Julia Anggraini     |   22 |
+| 00014 | Jeje Lubis          |   22 |
+| 00015 | Rahma Nst           |   22 |
+| 00016 | Nailah Adillah      |   22 |
+| 00017 | Putri Nora          |   22 |
++-------+---------------------+------+
+8 rows in set (0.001 sec)
+
+- tampilkan nip,nama pegawai, berat_badan yg paling kurus gunakan fungsi aggregrat min (kombinasi dengan sub query)
+
+MariaDB [dbpegawai]> select nip,nama,(YEAR(CURDATE())-YEAR(tgl_lahir)) as umur FROM pegawai WHERE (YEAR(CURDATE())-YEAR(tgl_lahir)) =
+    -> (select min((YEAR(CURDATE())-YEAR(tgl_lahir))) from pegawai);
++-------+--------------------+------+
+| nip   | nama               | umur |
++-------+--------------------+------+
+| 00004 | M. Sadam Mustaqiem |   19 |
++-------+--------------------+------+
+1 row in set (0.001 sec)
+
+- tampilkan data rata2 umur pegawai gunakan fungsi aggregrat avg
+MariaDB [dbpegawai]> select avg((YEAR(CURDATE())-YEAR(tgl_lahir))) as rata2_umur_pegawai from pegawai;
++--------------------+
+| rata2_umur_pegawai |
++--------------------+
+|            20.8333 |
++--------------------+
+1 row in set (0.050 sec)
+
+- tampilkan jumlah data pegawai yang laki2 gunakan fungsi aggregrat count
+
+MariaDB [dbpegawai]> select count(*) as jlh_data_pegawai_laki2 from pegawai where gender = 'L';
++------------------------+
+| jlh_data_pegawai_laki2 |
++------------------------+
+|                      5 |
++------------------------+
+1 row in set (0.001 sec)
+
+- tampilkan jumlah data pegawai yang perempuan gunakan fungsi aggregrat count
+
+MariaDB [dbpegawai]> select count(*) as jlh_data_pegawai_perempuan from pegawai where gender = 'P';
++----------------------------+
+| jlh_data_pegawai_perempuan |
++----------------------------+
+|                         13 |
++----------------------------+
+1 row in set (0.001 sec)
+
+- tampilkan total berat badan seluruh pegawai gunakan fungsi aggregrat sum
+MariaDB [dbpegawai]> select sum(berat_badan) as total_bb_pegawai from pegawai;
++------------------+
+| total_bb_pegawai |
++------------------+
+|             1058 |
++------------------+
+1 row in set, 18 warnings (0.053 sec)
+
+- tampilkan data jumlah pegawai berdasarkan gender, yg jumlah minimal 10 orang (gunakan group by dan having)
+
+MariaDB [dbpegawai]> select gender, count(gender) as jumlah_pegawai from pegawai group by gender
+    -> having count(gender)>=10;
++--------+----------------+
+| gender | jumlah_pegawai |
++--------+----------------+
+| P      |             13 |
++--------+----------------+
+1 row in set (0.037 sec)
