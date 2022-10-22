@@ -1,0 +1,40 @@
+Nama		: Sofia Arizka
+Asal Kampus	: Politeknik Negeri Medan
+Kelompok	: 6
+Mentor		: Akhmar Arif
+=============================================
+
+- masuk ke database
+USE pos;
+
+1. Buat INNER JOIN 4 TABLE:
+
+- offices: addressLine1, phone, city as kota
+
+- employees: firstName, email, jobTitle
+
+- customers: customerName, phone as telp, city
+
+- payments: paymentDate, amount
+
+	SELECT c.customerName, c.phone AS telp, c.city,
+    	p.paymentDate, p.amount, e.firstName, e.email, e.jobTitle,
+    	o.addressLine1, o.phone, o.city AS kota FROM customers c
+    	INNER JOIN payments p ON p.customerNumber = c.customerNumber
+    	INNER JOIN employees e ON e.employeeNumber = c.salesRepEmployeeNumber
+    	INNER JOIN offices o ON o.officeCode = e.officeCode;
+   
+
+2. Setelah itu buat tabel viewnya: customer_vw
+
+	CREATE VIEW customer_vw AS
+    	SELECT c.customerName, c.phone AS telp, c.city,
+    	p.paymentDate, p.amount, e.firstName, e.email, e.jobTitle,
+    	o.addressLine1, o.phone, o.city AS kota FROM customers c
+    	INNER JOIN payments p ON p.customerNumber = c.customerNumber
+    	INNER JOIN employees e ON e.employeeNumber = c.salesRepEmployeeNumber
+    	INNER JOIN offices o ON o.officeCode = e.officeCode;
+
+- menjalankan table customer_vw 
+
+	SELECT * FROM customer_vw;
