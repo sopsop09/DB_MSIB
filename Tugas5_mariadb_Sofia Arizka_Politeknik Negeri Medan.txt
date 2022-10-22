@@ -1,0 +1,148 @@
+Microsoft Windows [Version 10.0.19044.2130]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\Acer>d:
+
+D:\>cd xampp\mysql\bin
+
+D:\xampp\mysql\bin>mysql -u root -p pos
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 13
+Server version: 10.4.24-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [pos]> show tables;
++---------------+
+| Tables_in_pos |
++---------------+
+| customers     |
+| employees     |
+| offices       |
+| orderdetails  |
+| orders        |
+| payments      |
+| productlines  |
+| products      |
++---------------+
+8 rows in set (0.001 sec)
+
+MariaDB [pos]> desc employees;
++----------------+--------------+------+-----+---------+-------+
+| Field          | Type         | Null | Key | Default | Extra |
++----------------+--------------+------+-----+---------+-------+
+| employeeNumber | int(11)      | NO   | PRI | NULL    |       |
+| lastName       | varchar(50)  | NO   |     | NULL    |       |
+| firstName      | varchar(50)  | NO   |     | NULL    |       |
+| extension      | varchar(10)  | NO   |     | NULL    |       |
+| email          | varchar(100) | NO   |     | NULL    |       |
+| officeCode     | varchar(10)  | NO   | MUL | NULL    |       |
+| reportsTo      | int(11)      | YES  | MUL | NULL    |       |
+| jobTitle       | varchar(50)  | NO   |     | NULL    |       |
++----------------+--------------+------+-----+---------+-------+
+8 rows in set (0.014 sec)
+
+MariaDB [pos]> desc offices;
++--------------+-------------+------+-----+---------+-------+
+| Field        | Type        | Null | Key | Default | Extra |
++--------------+-------------+------+-----+---------+-------+
+| officeCode   | varchar(10) | NO   | PRI | NULL    |       |
+| city         | varchar(50) | NO   |     | NULL    |       |
+| phone        | varchar(50) | NO   |     | NULL    |       |
+| addressLine1 | varchar(50) | NO   |     | NULL    |       |
+| addressLine2 | varchar(50) | YES  |     | NULL    |       |
+| state        | varchar(50) | YES  |     | NULL    |       |
+| country      | varchar(50) | NO   |     | NULL    |       |
+| postalCode   | varchar(15) | NO   |     | NULL    |       |
+| territory    | varchar(10) | NO   |     | NULL    |       |
++--------------+-------------+------+-----+---------+-------+
+9 rows in set (0.012 sec)
+
+- INNER JOIN TABLE employees (4 field bebas) dengan offices (3 field bebas)
+
+MariaDB [pos]> select employees.firstName, employees.lastName, employees.email, employees.jobTitle,
+    -> offices.city, offices.country, offices.phone
+    -> from offices inner join employees
+    -> on offices.officeCode = employees.officeCode;
++-----------+-----------+---------------------------------+----------------------+---------------+-----------+------------------+
+| firstName | lastName  | email                           | jobTitle             | city          | country   | phone            |
++-----------+-----------+---------------------------------+----------------------+---------------+-----------+------------------+
+| Diane     | Murphy    | dmurphy@classicmodelcars.com    | President            | San Francisco | USA       | +1 650 219 4782  |
+| Mary      | Patterson | mpatterso@classicmodelcars.com  | VP Sales             | San Francisco | USA       | +1 650 219 4782  |
+| Jeff      | Firrelli  | jfirrelli@classicmodelcars.com  | VP Marketing         | San Francisco | USA       | +1 650 219 4782  |
+| Anthony   | Bow       | abow@classicmodelcars.com       | Sales Manager (NA)   | San Francisco | USA       | +1 650 219 4782  |
+| Leslie    | Jennings  | ljennings@classicmodelcars.com  | Sales Rep            | San Francisco | USA       | +1 650 219 4782  |
+| Leslie    | Thompson  | lthompson@classicmodelcars.com  | Sales Rep            | San Francisco | USA       | +1 650 219 4782  |
+| Julie     | Firrelli  | jfirrelli@classicmodelcars.com  | Sales Rep            | Boston        | USA       | +1 215 837 0825  |
+| Steve     | Patterson | spatterson@classicmodelcars.com | Sales Rep            | Boston        | USA       | +1 215 837 0825  |
+| Foon Yue  | Tseng     | ftseng@classicmodelcars.com     | Sales Rep            | NYC           | USA       | +1 212 555 3000  |
+| George    | Vanauf    | gvanauf@classicmodelcars.com    | Sales Rep            | NYC           | USA       | +1 212 555 3000  |
+| Gerard    | Bondur    | gbondur@classicmodelcars.com    | Sale Manager (EMEA)  | Paris         | France    | +33 14 723 4404  |
+| Loui      | Bondur    | lbondur@classicmodelcars.com    | Sales Rep            | Paris         | France    | +33 14 723 4404  |
+| Gerard    | Hernandez | ghernande@classicmodelcars.com  | Sales Rep            | Paris         | France    | +33 14 723 4404  |
+| Pamela    | Castillo  | pcastillo@classicmodelcars.com  | Sales Rep            | Paris         | France    | +33 14 723 4404  |
+| Martin    | Gerard    | mgerard@classicmodelcars.com    | Sales Rep            | Paris         | France    | +33 14 723 4404  |
+| Mami      | Nishi     | mnishi@classicmodelcars.com     | Sales Rep            | Tokyo         | Japan     | +81 33 224 5000  |
+| Yoshimi   | Kato      | ykato@classicmodelcars.com      | Sales Rep            | Tokyo         | Japan     | +81 33 224 5000  |
+| William   | Patterson | wpatterson@classicmodelcars.com | Sales Manager (APAC) | Sydney        | Australia | +61 2 9264 2451  |
+| Andy      | Fixter    | afixter@classicmodelcars.com    | Sales Rep            | Sydney        | Australia | +61 2 9264 2451  |
+| Peter     | Marsh     | pmarsh@classicmodelcars.com     | Sales Rep            | Sydney        | Australia | +61 2 9264 2451  |
+| Tom       | King      | tking@classicmodelcars.com      | Sales Rep            | Sydney        | Australia | +61 2 9264 2451  |
+| Larry     | Bott      | lbott@classicmodelcars.com      | Sales Rep            | London        | UK        | +44 20 7877 2041 |
+| Barry     | Jones     | bjones@classicmodelcars.com     | Sales Rep            | London        | UK        | +44 20 7877 2041 |
++-----------+-----------+---------------------------------+----------------------+---------------+-----------+------------------+
+23 rows in set (0.001 sec)
+
+- INNER JOIN TABLE employees (4 field bebas)dengan offices (3 field bebas) dengan mengaliaskan tabelnya
+
+MariaDB [pos]> select pg.firstName, pg.lastName, pg.email,pg.jobTitle,
+    -> oc.city, oc.country, oc.phone
+    -> from offices as oc inner join employees as pg
+    -> on oc.officeCode = pg.officeCode;
++-----------+-----------+---------------------------------+----------------------+---------------+-----------+------------------+
+| firstName | lastName  | email                           | jobTitle             | city          | country   | phone            |
++-----------+-----------+---------------------------------+----------------------+---------------+-----------+------------------+
+| Diane     | Murphy    | dmurphy@classicmodelcars.com    | President            | San Francisco | USA       | +1 650 219 4782  |
+| Mary      | Patterson | mpatterso@classicmodelcars.com  | VP Sales             | San Francisco | USA       | +1 650 219 4782  |
+| Jeff      | Firrelli  | jfirrelli@classicmodelcars.com  | VP Marketing         | San Francisco | USA       | +1 650 219 4782  |
+| Anthony   | Bow       | abow@classicmodelcars.com       | Sales Manager (NA)   | San Francisco | USA       | +1 650 219 4782  |
+| Leslie    | Jennings  | ljennings@classicmodelcars.com  | Sales Rep            | San Francisco | USA       | +1 650 219 4782  |
+| Leslie    | Thompson  | lthompson@classicmodelcars.com  | Sales Rep            | San Francisco | USA       | +1 650 219 4782  |
+| Julie     | Firrelli  | jfirrelli@classicmodelcars.com  | Sales Rep            | Boston        | USA       | +1 215 837 0825  |
+| Steve     | Patterson | spatterson@classicmodelcars.com | Sales Rep            | Boston        | USA       | +1 215 837 0825  |
+| Foon Yue  | Tseng     | ftseng@classicmodelcars.com     | Sales Rep            | NYC           | USA       | +1 212 555 3000  |
+| George    | Vanauf    | gvanauf@classicmodelcars.com    | Sales Rep            | NYC           | USA       | +1 212 555 3000  |
+| Gerard    | Bondur    | gbondur@classicmodelcars.com    | Sale Manager (EMEA)  | Paris         | France    | +33 14 723 4404  |
+| Loui      | Bondur    | lbondur@classicmodelcars.com    | Sales Rep            | Paris         | France    | +33 14 723 4404  |
+| Gerard    | Hernandez | ghernande@classicmodelcars.com  | Sales Rep            | Paris         | France    | +33 14 723 4404  |
+| Pamela    | Castillo  | pcastillo@classicmodelcars.com  | Sales Rep            | Paris         | France    | +33 14 723 4404  |
+| Martin    | Gerard    | mgerard@classicmodelcars.com    | Sales Rep            | Paris         | France    | +33 14 723 4404  |
+| Mami      | Nishi     | mnishi@classicmodelcars.com     | Sales Rep            | Tokyo         | Japan     | +81 33 224 5000  |
+| Yoshimi   | Kato      | ykato@classicmodelcars.com      | Sales Rep            | Tokyo         | Japan     | +81 33 224 5000  |
+| William   | Patterson | wpatterson@classicmodelcars.com | Sales Manager (APAC) | Sydney        | Australia | +61 2 9264 2451  |
+| Andy      | Fixter    | afixter@classicmodelcars.com    | Sales Rep            | Sydney        | Australia | +61 2 9264 2451  |
+| Peter     | Marsh     | pmarsh@classicmodelcars.com     | Sales Rep            | Sydney        | Australia | +61 2 9264 2451  |
+| Tom       | King      | tking@classicmodelcars.com      | Sales Rep            | Sydney        | Australia | +61 2 9264 2451  |
+| Larry     | Bott      | lbott@classicmodelcars.com      | Sales Rep            | London        | UK        | +44 20 7877 2041 |
+| Barry     | Jones     | bjones@classicmodelcars.com     | Sales Rep            | London        | UK        | +44 20 7877 2041 |
++-----------+-----------+---------------------------------+----------------------+---------------+-----------+------------------+
+23 rows in set (0.002 sec)
+
+- OUTER JOIN TABLE employees (4 field bebas) dengan offices (3 field bebas) dengan mengaliaskan tabelnya
+
+MariaDB [pos]> select pg.firstName, pg.lastName, pg.email,pg.jobTitle,
+    -> oc.phone, oc.city, oc.country
+    -> from offices as oc left join employees as pg on oc.officeCode = pg.officeCode
+    -> where pg.officeCode is null;
+Empty set (0.001 sec)
+
+MariaDB [pos]> select pg.firstName, pg.lastName, pg.email,pg.jobTitle,
+    -> oc.phone, oc.city, oc.country
+    -> from employees as pg right join offices as oc on pg.officeCode = oc.officeCode
+    -> where pg.officeCode is null;
+Empty set (0.001 sec)
+
+MariaDB [pos]>
