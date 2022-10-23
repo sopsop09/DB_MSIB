@@ -1,0 +1,52 @@
++---------------------------------------------------------------+
+| Nama          : Sofia Arizka			                |
+| Tugas         : 8 - Database Maria DB                         |
+| Mentor        : Akhmad Arif	                                |
+| Universitas   : Politeknik Negeri Medan		        |
++---------------------------------------------------------------+
+
+-- Masuk ke mysql
+C:\Users\Acer>D:
+
+D:\>cd xampp\mysql\bin
+
+D:\xampp\mysql\bin>mysql -u root -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 117
+Server version: 10.4.24-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+-- Membuat database baru
+MariaDB [(none)]> create database dbrental_bus;
+Query OK, 1 row affected (0.001 sec)
+
+MariaDB [(none)]> exit
+Bye
+
+-- meng-impor database 
+D:\xampp\mysql\bin>mysql -u root -p dbrental_bus < d:\dbrentalbus.sql
+Enter password:
+
+-- membuat trigger
+
+USE dbrental_bus;
+
+delimiter $$
+CREATE TRIGGER updteStatus
+AFTER INSERT ON transaksi
+FOR EACH ROW
+BEGIN
+UPDATE sopir SET status = 'Jalan'
+WHERE id = NEW.idsopir;
+UPDATE kendaraan SET status = 'Jalan'
+WHERE id = NEW.idkendaraan;
+END$$
+delimiter ;
+
+-- backup database
+D:\xampp\mysql\bin>mysqldump -u root -p dbrental_bus > d:\dbbackup_rentalbus.sql
+Enter password:
